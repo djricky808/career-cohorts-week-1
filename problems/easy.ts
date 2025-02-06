@@ -10,6 +10,24 @@
  *
  */
 
+function twoSum(nums: number[], target: number): number[] | void {
+  let results: number[] = [];
+  nums.forEach((num, i, arr) => {
+    if (num <= target) {
+      for (let j = i + 1; j < nums.length; j++) {
+        console.log(num + arr[j]);
+        if (num + arr[j] === target) {
+          results = [i, j];
+          return;
+        }
+      }
+    }
+  });
+  return results;
+}
+
+console.log(twoSum([2, 7, 11, 15], 9));
+
 /*
  * Problem: Reverse Words in a String
  *
@@ -20,6 +38,11 @@
  * Output: "blue is sky the"
  *
  */
+function reverseWords(word: string): string {
+  return word.split(" ").reverse().join(" ");
+}
+
+console.log(reverseWords("the sky is blue"));
 
 /*
  * Problem: Most Common Character
