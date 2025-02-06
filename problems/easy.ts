@@ -77,6 +77,30 @@ console.log(reverseWords("the sky is blue"));
  *
  */
 
+function firstUniqueCharacter(string: string): number {
+  let index = 0;
+  let characterCount: { [letter: string]: number } = {};
+  for (let i = 0; i < string.length; i++) {
+    if (characterCount[string[i]]) {
+      characterCount[string[i]] += 1;
+    } else {
+      characterCount[string[i]] = 1;
+    }
+  }
+
+  for (let i = 0; i < string.length; i++) {
+    if (characterCount[string[i]] === 1) {
+      index = i;
+      break;
+    }
+  }
+  console.log(characterCount);
+  return index;
+}
+
+console.log(firstUniqueCharacter("leetcode"));
+console.log(firstUniqueCharacter("racecar")); //3
+console.log(firstUniqueCharacter("ababababababababababababababababbabz"));
 /*
  * Problem: Find All Duplicates in an Array
  *
