@@ -88,6 +88,22 @@ console.log(mostCommonCharacter("banana"));
  *
  */
 
+function findDuplicates(nums: number[]): number[] {
+  let firstTime: number[] = [];
+  let duplicates: number[] = [];
+  nums.forEach((number: number) => {
+    if (firstTime.includes(number)) {
+      if (!duplicates.includes(number)) {
+        duplicates.push(number);
+      }
+    } else {
+      firstTime.push(number);
+    }
+  });
+  return duplicates;
+}
+
+console.log(findDuplicates([4, 3, 2, 7, 8, 2, 3, 1]));
 /*
  * Problem: First Unique Character
  *
