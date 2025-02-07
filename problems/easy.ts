@@ -26,7 +26,7 @@ function twoSum(nums: number[], target: number): number[] | void {
   return results;
 }
 
-console.log(twoSum([2, 7, 11, 15], 9));
+//console.log(twoSum([2, 7, 11, 15], 9));
 
 /*
  * Problem: Reverse Words in a String
@@ -42,7 +42,7 @@ function reverseWords(word: string): string {
   return word.split(" ").reverse().join(" ");
 }
 
-console.log(reverseWords("the sky is blue"));
+//console.log(reverseWords("the sky is blue"));
 
 /*
  * Problem: Most Common Character
@@ -54,6 +54,28 @@ console.log(reverseWords("the sky is blue"));
  * Output: "a"
  *
  */
+
+function mostCommonCharacter(str: string): string {
+  let letterCount: { [letter: string]: number } = {};
+  let highestCountLetter = "";
+  let highestCount = 0;
+  for (let i = 0; i < str.length; i++) {
+    if (letterCount[str[i]]) {
+      letterCount[str[i]] += 1;
+    } else {
+      letterCount[str[i]] = 1;
+    }
+  }
+  for (let letter in letterCount) {
+    if (letterCount[letter] > highestCount) {
+      highestCountLetter = letter;
+      highestCount = letterCount[letter];
+    }
+  }
+  return highestCountLetter;
+}
+
+console.log(mostCommonCharacter("banana"));
 
 /*
  * Problem: Find Duplicates
@@ -94,13 +116,13 @@ function firstUniqueCharacter(string: string): number {
       break;
     }
   }
-  console.log(characterCount);
+  //  console.log(characterCount);
   return index;
 }
 
-console.log(firstUniqueCharacter("leetcode"));
-console.log(firstUniqueCharacter("racecar")); //3
-console.log(firstUniqueCharacter("ababababababababababababababababbabz"));
+//console.log(firstUniqueCharacter("leetcode"));
+//console.log(firstUniqueCharacter("racecar")); //3
+//console.log(firstUniqueCharacter("ababababababababababababababababbabz"));
 /*
  * Problem: Find All Duplicates in an Array
  *
