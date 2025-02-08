@@ -9,6 +9,19 @@
  *
  */
 
+function mergeInterval(intervals: number[][]): number[][] {
+  return intervals;
+}
+
+console.log(
+  mergeInterval([
+    [1, 3],
+    [2, 6],
+    [8, 10],
+    [15, 18],
+  ])
+);
+
 /*
  * Problem: Group Anagrams
  *
