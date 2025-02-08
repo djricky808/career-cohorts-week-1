@@ -10,7 +10,13 @@
  */
 
 function mergeInterval(intervals: number[][]): number[][] {
-  return intervals;
+  let merged = [];
+  intervals.forEach((interval: number[], i: number, arr: number[][]) => {
+    if (i < arr.length - 1) {
+      let [currentEnd, nextStart] = [interval[1], arr[i + 1][0]];
+      console.log(currentEnd, nextStart);
+    }
+  });
 }
 
 console.log(
