@@ -10,13 +10,27 @@
  */
 
 function mergeInterval(intervals: number[][]): number[][] {
-  let merged = [];
+  let merged: number[][] = [];
   intervals.forEach((interval: number[], i: number, arr: number[][]) => {
     if (i < arr.length - 1) {
-      let [currentEnd, nextStart] = [interval[1], arr[i + 1][0]];
-      console.log(currentEnd, nextStart);
+      let [current, next] = [interval, arr[i + 1]];
+      console.log(current[1], next[0]);
+      if (current[1] > next[0]) {
+        let lastMergeEnd: number[] = merged[merged.length - 1];
+        if (merged.length >= 1 && lastMergeEnd[1] > next[0]) {
+          let temp: number = lastMergeEnd[0];
+          merged.pop();
+          merged.push([temp, interval[1]]);
+        } else {
+          merged.push([current[0], next[1]]);
+        }
+      } else {
+        merged.push(interval);
+      }
+      console.log(merged);
     }
   });
+  return merged;
 }
 
 console.log(
