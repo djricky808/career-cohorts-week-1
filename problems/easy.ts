@@ -148,4 +148,4 @@ function firstUniqueCharacter(string: string): number {
  * Input: [4,3,2,7,8,2,3,1]
  * Output: [2,3]
  *
- */
+ */ //The duplicate algo is a duplicate. LOL!
