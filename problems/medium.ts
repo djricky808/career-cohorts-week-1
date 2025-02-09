@@ -11,6 +11,15 @@
 
 function mergeInterval(intervals: number[][]): number[][] {
   let merged: number[][] = [];
+  //Assuming in the event the intervals are out of numerical order.
+  intervals.sort((a: number[], b: number[]): number => {
+    if (a[0] > b[0]) {
+      return +1;
+    } else {
+      return -1;
+    }
+  });
+
   intervals.forEach((interval: number[], i: number, arr: number[][]) => {
     if (i === 0) {
       merged.push(interval);
@@ -36,12 +45,22 @@ function mergeInterval(intervals: number[][]): number[][] {
   return merged;
 }
 
+// console.log(
+//   mergeInterval([
+//     [1, 3],
+//     [2, 6],
+//     [8, 10],
+//     [15, 18],
+//   ])
+// );
+
 console.log(
   mergeInterval([
     [1, 3],
     [2, 6],
-    [8, 10],
+    [5, 10],
     [15, 18],
+    [9, 12],
   ])
 );
 
