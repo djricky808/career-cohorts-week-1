@@ -75,7 +75,7 @@ function mergeInterval(intervals: number[][]): number[][] {
  *
  */
 
-function groupAnagrams(words: string[]): void {
+function groupAnagrams(words: string[]): string[][] {
   let wordHashTable: { [sortedWord: string]: string[] } = {};
   words.forEach((word) => {
     let sorted = word.split("").sort().join("");
@@ -87,6 +87,7 @@ function groupAnagrams(words: string[]): void {
   });
 
   console.log(wordHashTable);
+  return Object.values(wordHashTable);
 }
 
 console.log(groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]));
