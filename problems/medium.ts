@@ -144,6 +144,14 @@ function longestPalindrome(string: string): string {
  * Hint: Use recursion + a helper function.
  */
 
+function flattenObject(object: { [letter: string]: number }): {
+  [letter: string]: number;
+} {
+  return object;
+}
+
+console.log(flattenObject({ a: { b: { c: 1 } }, d: 2 }));
+
 /*
  * Problem: Deep Object Comparison
  *
@@ -173,10 +181,8 @@ function maxSubarray(numbers: number[]): number {
     let currentMaxSum = 0;
     let runningSum = 0;
     for (let j = i; j < numbers.length; j++) {
-      console.log(`Number at iteration ${[i, j]} ${numbers[j]}`);
       let newSum = runningSum + numbers[j];
       runningSum = newSum;
-      console.log(`Running Sum: ${runningSum}`);
       if (runningSum > currentMaxSum) {
         currentMaxSum = runningSum;
       }
@@ -185,17 +191,7 @@ function maxSubarray(numbers: number[]): number {
       finalMaxSum = currentMaxSum;
     }
   }
-  //   let currentSum = 0;
-  //   let newSum = currentSum + numbers[i];
-  //   if (newSum < currentSum) {
-  //     currentSum = 0;
-  //   } else {
-  //     if (currentSum > maxSum) {
-  //       maxSum = currentSum;
-  //     }
-  //   }
-  // }
   return finalMaxSum;
 }
 
-console.log(maxSubarray([-2, 1, -3, 4, -1, 2, 1, -5, 4]));
+//console.log(maxSubarray([-2, 1, -3, 4, -1, 2, 1, -5, 4]));
