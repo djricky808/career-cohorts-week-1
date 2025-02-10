@@ -86,11 +86,10 @@ function groupAnagrams(words: string[]): string[][] {
     }
   });
 
-  console.log(wordHashTable);
   return Object.values(wordHashTable);
 }
 
-console.log(groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]));
+//console.log(groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]));
 
 /*
  * Problem: Longest Palindromic Substring
@@ -103,6 +102,36 @@ console.log(groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]));
  *
  */
 
+function longestPalindrome(string: string): string {
+  let max: number[] = [0, 1];
+
+  const findPalindrome = (
+    left: number,
+    right: number,
+    string: string
+  ): number[] => {
+    while (left >= 0 && right < string.length) {
+      if (string[left] !== string[right]) {
+        break;
+      }
+      left--;
+      right++;
+    }
+    return [left + 1, right];
+  };
+
+  for (let i = 0; i < string.length; i++) {
+    let even = findPalindrome(i - 1, i, string);
+    let odd = findPalindrome(i - 1, i + 1, string);
+    let currentMax = odd[1] - odd[0] > even[1] - even[0] ? odd : even;
+
+    max = max[1] - max[0] > currentMax[1] - currentMax[0] ? max : currentMax;
+  }
+
+  return string.slice(max[0], max[1]);
+}
+
+console.log(longestPalindrome("babadracecar"));
 /*
  * Problem: Flatten Nested Object
  *
