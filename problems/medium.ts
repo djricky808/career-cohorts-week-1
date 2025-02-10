@@ -121,9 +121,9 @@ function longestPalindrome(string: string): string {
   };
 
   for (let i = 0; i < string.length; i++) {
-    let even = findPalindrome(i - 1, i, string);
-    let odd = findPalindrome(i - 1, i + 1, string);
-    let currentMax = odd[1] - odd[0] > even[1] - even[0] ? odd : even;
+    let even: number[] = findPalindrome(i - 1, i, string);
+    let odd: number[] = findPalindrome(i - 1, i + 1, string);
+    let currentMax: number[] = odd[1] - odd[0] > even[1] - even[0] ? odd : even;
 
     max = max[1] - max[0] > currentMax[1] - currentMax[0] ? max : currentMax;
   }
@@ -131,7 +131,7 @@ function longestPalindrome(string: string): string {
   return string.slice(max[0], max[1]);
 }
 
-console.log(longestPalindrome("babadracecar"));
+//console.log(longestPalindrome("babadracecar"));
 /*
  * Problem: Flatten Nested Object
  *
@@ -159,10 +159,28 @@ console.log(longestPalindrome("babadracecar"));
 /*
  * Problem: Maximum Subarray Sum
  *
- * Find the contiguous subarray with the largest sum.
+ * Find the contiguous (elements next to each other in sequence) subarray with the largest sum.
  *
  * Example:
  * Input: [-2,1,-3,4,-1,2,1,-5,4]
  * Output: 6  // Subarray: [4,-1,2,1]
  *
  */
+
+function maxSubarray(numbers: number[]): number {
+  let maxSum = 0;
+  for (let i = 0; i < numbers.length; i++) {
+    let currentSum = 0;
+    let newSum = currentSum + numbers[i];
+    if (newSum < currentSum) {
+      currentSum = 0;
+    } else {
+      if (currentSum > maxSum) {
+        maxSum = currentSum;
+      }
+    }
+  }
+  return maxSum;
+}
+
+console.log(maxSubarray([-2, 1, -3, 4, -1, 2, 1, -5, 4]));
