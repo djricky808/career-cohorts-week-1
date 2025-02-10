@@ -54,15 +54,15 @@ function mergeInterval(intervals: number[][]): number[][] {
 //   ])
 // );
 
-console.log(
-  mergeInterval([
-    [1, 3],
-    [2, 6],
-    [5, 10],
-    [15, 18],
-    [9, 12],
-  ])
-);
+// console.log(
+//   mergeInterval([
+//     [1, 3],
+//     [2, 6],
+//     [5, 10],
+//     [15, 18],
+//     [9, 12],
+//   ])
+// );
 
 /*
  * Problem: Group Anagrams
@@ -74,6 +74,22 @@ console.log(
  * Output: [["eat","tea","ate"],["tan","nat"],["bat"]]
  *
  */
+
+function groupAnagrams(words: string[]): void {
+  let wordHashTable: { [sortedWord: string]: string[] } = {};
+  words.forEach((word) => {
+    let sorted = word.split("").sort().join("");
+    if (wordHashTable[sorted]) {
+      wordHashTable[sorted].push(word);
+    } else {
+      wordHashTable[sorted] = [word];
+    }
+  });
+
+  console.log(wordHashTable);
+}
+
+console.log(groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]));
 
 /*
  * Problem: Longest Palindromic Substring
