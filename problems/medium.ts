@@ -168,19 +168,34 @@ function longestPalindrome(string: string): string {
  */
 
 function maxSubarray(numbers: number[]): number {
-  let maxSum = 0;
+  let finalMaxSum = 0;
   for (let i = 0; i < numbers.length; i++) {
-    let currentSum = 0;
-    let newSum = currentSum + numbers[i];
-    if (newSum < currentSum) {
-      currentSum = 0;
-    } else {
-      if (currentSum > maxSum) {
-        maxSum = currentSum;
+    let currentMaxSum = 0;
+    let runningSum = 0;
+    for (let j = i; j < numbers.length; j++) {
+      console.log(`Number at iteration ${[i, j]} ${numbers[j]}`);
+      let newSum = runningSum + numbers[j];
+      runningSum = newSum;
+      console.log(`Running Sum: ${runningSum}`);
+      if (runningSum > currentMaxSum) {
+        currentMaxSum = runningSum;
       }
     }
+    if (currentMaxSum > finalMaxSum) {
+      finalMaxSum = currentMaxSum;
+    }
   }
-  return maxSum;
+  //   let currentSum = 0;
+  //   let newSum = currentSum + numbers[i];
+  //   if (newSum < currentSum) {
+  //     currentSum = 0;
+  //   } else {
+  //     if (currentSum > maxSum) {
+  //       maxSum = currentSum;
+  //     }
+  //   }
+  // }
+  return finalMaxSum;
 }
 
 console.log(maxSubarray([-2, 1, -3, 4, -1, 2, 1, -5, 4]));
