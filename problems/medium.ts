@@ -159,7 +159,7 @@ function flattenObject(object: TObject): TObject {
   return flattened;
 }
 
-console.log(flattenObject({ a: { b: { c: 1 } }, d: [2, 3, 4] }));
+//console.log(flattenObject({ a: { b: { c: 1 } }, d: [2, 3, 4] }));
 
 /*
  * Problem: Deep Object Comparison
@@ -173,9 +173,27 @@ console.log(flattenObject({ a: { b: { c: 1 } }, d: [2, 3, 4] }));
  * Hint: Use recursion and check nested properties.
  */
 
-function deepObject(object: TObject): boolean {
-  return false;
+function deepObjectComparison(obj1: TObject, obj2: TObject): boolean {
+  if (typeof obj1 !== typeof obj2) {
+    return false;
+  }
+  if (Array.isArray(obj1)) {
+    if (obj1.length !== obj2.length) {
+      return false;
+    }
+    return obj1.every((el, i) => deepObjectComparison(el, obj2[i]));
+  } else if (typeof obj1 === "object" && obj1 !== null) {
+    if (Object.keys(obj1).length !== Object.keys(obj2).length) {
+      return false;
+    }
+    return Object.keys(obj1).every((key) =>
+      deepObjectComparison(obj1[key], obj2[key])
+    );
+  }
+  return obj1 === obj2;
 }
+
+console.log(deepObjectComparison({ a: { b: null } }, { a: { b: null } }));
 
 /*
  * Problem: Maximum Subarray Sum
