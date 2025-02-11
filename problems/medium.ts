@@ -143,9 +143,7 @@ function longestPalindrome(string: string): string {
  *
  * Hint: Use recursion + a helper function.
  */
-type TObject = {
-  [letter: string]: any;
-};
+type TObject = Record<string, any>;
 function flattenObject(object: TObject): TObject {
   let flattened: { [letter: string]: number } = {};
   for (const elm in object) {
