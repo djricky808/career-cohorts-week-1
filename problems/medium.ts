@@ -173,6 +173,10 @@ console.log(flattenObject({ a: { b: { c: 1 } }, d: [2, 3, 4] }));
  * Hint: Use recursion and check nested properties.
  */
 
+function deepObject(object: TObject): boolean {
+  return false;
+}
+
 /*
  * Problem: Maximum Subarray Sum
  *
