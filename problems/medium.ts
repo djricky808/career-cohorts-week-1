@@ -143,11 +143,22 @@ function longestPalindrome(string: string): string {
  *
  * Hint: Use recursion + a helper function.
  */
-
-function flattenObject(object: { [letter: string]: number }): {
-  [letter: string]: number;
-} {
-  return object;
+type TObject = {
+  [letter: string]: any;
+};
+function flattenObject(object: TObject): TObject {
+  let flattened: { [letter: string]: number } = {};
+  for (const elm in object) {
+    if (typeof object[elm] === "object") {
+      const tempObj = flattenObject(object[elm]);
+      for (const tElm in tempObj) {
+        flattened[`${elm}.${tElm}`] = tempObj[tElm];
+      }
+    } else {
+      flattened[elm] = object[elm];
+    }
+  }
+  return flattened;
 }
 
 console.log(flattenObject({ a: { b: { c: 1 } }, d: 2 }));
