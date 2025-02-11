@@ -149,7 +149,7 @@ type TObject = {
 function flattenObject(object: TObject): TObject {
   let flattened: { [letter: string]: number } = {};
   for (const elm in object) {
-    if (typeof object[elm] === "object") {
+    if (typeof object[elm] === "object" && !Array.isArray(object[elm])) {
       const tempObj = flattenObject(object[elm]);
       for (const tElm in tempObj) {
         flattened[`${elm}.${tElm}`] = tempObj[tElm];
@@ -161,7 +161,7 @@ function flattenObject(object: TObject): TObject {
   return flattened;
 }
 
-console.log(flattenObject({ a: { b: { c: 1 } }, d: 2 }));
+console.log(flattenObject({ a: { b: { c: 1 } }, d: [2, 3, 4] }));
 
 /*
  * Problem: Deep Object Comparison
